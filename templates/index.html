@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Movie Recommendation Engine</title>
+
+
+</head>
+
+<style>
+    form.createArea{
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+    padding:10px 0;
+    width: 530px;
+    margin: 20px auto;
+    background-color:#ddd;
+
+}
+form.createArea input
+{
+    width: 100%;
+    height: 60px;
+    border: none;
+    font-size: 20px;
+    padding: 40px 15px;
+    box-shadow: none;
+    outline: none;
+    overflow: hidden;
+    background-color:#eee;
+
+}
+.createArea button{
+   font-family: arial;
+	text-transform: uppercase;
+	font-size:20px;
+	width: 140px;
+	height: 50px;
+	color: #fff;
+	border-radius:80px;
+	line-height:50px;
+	display: block;
+	float: right;
+	margin-left:-10px;
+	text-decoration: none;
+	margin:1.2rem ;
+	background: linear-gradient(-45deg, #327697 0, #ed145b 100%);
+
+}
+h2{
+    text align:center;
+    color:#fff;
+    margin-top:50px;
+}
+.movie{
+    background-image:linear-gradient(160deg, #34d6f2 30%, #ed145b 50%);
+    height:100vh
+}
+
+
+
+@-webkit-keyframes fadeInLeftBig {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(-2000px, 0, 0);
+        transform: translate3d(-2000px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes fadeInLeftBig {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(-2000px, 0, 0);
+        transform: translate3d(-2000px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+.fadeInLeftBig{
+    -webkit-animation-name: fadeInLeftBig;
+    animation-name: fadeInLeftBig;
+}
+li{
+    list-style:none;
+    color:#fff;
+}
+
+
+</style>
+
+<body >
+<div class="container-fluid movie">
+    <div class="row">
+        <div class="offset-3 col-md-6">
+                    <h2 class="text-md-center">Movie Recommendation Engine</h2><br>
+                    <form class="createArea" method="post" action="/predict">
+                        <input type="text" name="movie"  placeholder="Movie which you Like" />
+                        <button type="Submit">Submit</button>
+                     </form>
+        </div>
+
+    </div>
+        <div class="row">
+            <div class="offset-4 col-md-6">
+
+                <div class="fadeInLeftBig">
+
+                    {% if similar_movies %}
+                        <h4>Most 5 similar Movie is Listed here-</h4>
+                        {% for movie in similar_movies %}
+
+                            <li style="color:#fff"> {{ movie }}</li>
+
+                        {% endfor %}
+                    {% endif %}
+                    {% if error %}
+                        <h4 style="color:#fff">{{error}}</h4>
+                    {% endif %}
+
+
+                </div>
+            </div>
+    </div>
+</div>
+
+</body>
+</html>
